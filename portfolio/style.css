@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+}
+
+header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 40px;
+    gap: 30px;
+    background-color: #fff7ae;
+}
+
+header img {
+    width: 700px;
+    height: auto;
+    max-height: 640px;
+    border-radius: 0;
+    object-fit: contain;
+    margin-left: 40px;
+    align-self: center;
+    margin-top: 0;
+}
+
+
+.subtitle {
+    font-size: 5rem;
+    font-weight: 700;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 0;
+}
+
+header h1 {
+    font-size: 3.5rem;
+    font-weight: 400;
+    margin: 0;
+    margin-top: 0;
+}
+
+.header-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex: 1;
+}
+
+.header-left h2.subtitle {
+    font-size: 7vw;
+    margin-bottom: 0;
+    margin-top: 0;
+    line-height: 1;
+}
+
+.header-left h1 {
+    margin-top: 0.15em;
+    margin-bottom: 0;
+    line-height: 1;
+}
+
+header>div>h3 {
+    font-size: 2rem;
+    margin-bottom: 16px;
+    color: #fff;
+}
+
+header>div>p {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    line-height: 1.7;
+    color: #fff;
+}
+
+.aboutMe-inline {
+    width: 70%;
+    margin-top: 1.5rem;
+}
