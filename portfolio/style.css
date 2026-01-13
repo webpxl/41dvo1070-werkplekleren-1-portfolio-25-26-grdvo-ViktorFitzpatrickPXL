@@ -9,9 +9,45 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Dark theme variables */
+:root {
+    --site-bg: #071126;
+    /* deep navy */
+    --site-surface: #0b2333;
+    /* slightly lighter surface */
+    --site-text: #E6F0FF;
+    /* light text */
+    --muted-text: #9fbfd6;
+    /* muted text */
+    --accent: #00BFA6;
+    /* mint accent */
+    --card-bg: #0f2a3b;
+    /* card background */
+    --card-border: rgba(230, 240, 255, 0.04);
+    --nav-surface: rgba(11, 35, 51, 0.85);
+    --muted-shadow: rgba(0, 0, 0, 0.6);
+
+    /* neon / futuristic additions */
+    --neon: #5af0d6;
+    --neon-strong: rgba(90, 240, 214, 0.14);
+    --glass: rgba(255, 255, 255, 0.03);
+    --scanline: rgba(255, 255, 255, 0.02);
+
+    /* Animation design tokens */
+    --motion-duration-s: 220ms;
+    --motion-duration-m: 420ms;
+    --motion-duration-l: 700ms;
+    --motion-ease: cubic-bezier(.2, .9, .2, 1);
+    --motion-ease-soft: cubic-bezier(.25, .46, .45, .94);
+    --motion-stagger: 80ms;
+    --glow-color: rgba(0, 191, 166, 0.12);
+}
+
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
+    background-color: var(--site-bg);
+    color: var(--site-text);
 }
 
 /* Make top navigation match the projects page */
@@ -36,10 +72,27 @@ nav>a:focus {
     outline: none;
 }
 
+/* Typing-like underline for nav items and entrance */
+nav>button::after,
+nav>a::after {
+    content: "";
+    display: block;
+    height: 2px;
+    width: 0;
+    background: linear-gradient(90deg, var(--accent), rgba(0, 191, 166, 0.4));
+    transition: width var(--motion-duration-m) var(--motion-ease);
+    margin-top: 6px;
+}
+
+nav>button.is-visible::after,
+nav>a.is-visible::after {
+    width: 100%;
+}
+
 /* make nav match header color and add bottom border */
 nav {
-    background-color: #fff7ae;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.65);
+    background-color: var(--nav-surface);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     box-sizing: border-box;
 }
 
@@ -60,6 +113,94 @@ nav.topnav {
     width: 100%;
 }
 
+/* Futuristic topnav: glass + neon glow (applies when body has .futuristic) */
+body.futuristic nav.topnav {
+    background: linear-gradient(180deg, rgba(11, 35, 51, 0.72), rgba(7, 17, 38, 0.42));
+    backdrop-filter: blur(6px) saturate(120%);
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.5);
+}
+
+body.futuristic nav.topnav>button,
+body.futuristic .nav-left a {
+    font-weight: 700;
+    letter-spacing: .6px;
+    color: var(--site-text);
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: transform var(--motion-duration-s) var(--motion-ease), box-shadow 260ms ease;
+}
+
+body.futuristic nav.topnav>button:hover,
+body.futuristic .nav-left a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 28px var(--neon-strong);
+}
+
+/* stronger, neon underline */
+nav>button::after,
+nav>a::after {
+    background: linear-gradient(90deg, var(--neon), rgba(0, 191, 166, 0.35));
+}
+
+/* Make the underline appear on hover/active without JS */
+nav>button:hover::after,
+nav>a:hover::after,
+nav>button:focus::after,
+nav>a:focus::after,
+nav>button.active::after,
+nav>a.active::after {
+    width: 100%;
+}
+
+/* Header: subtle radial neon glow + scanline */
+body.futuristic header {
+    position: relative;
+    overflow: hidden;
+}
+
+body.futuristic header::before {
+    content: '';
+    position: absolute;
+    left: -10%;
+    top: -30%;
+    width: 60%;
+    height: 200%;
+    background: radial-gradient(closest-side, rgba(90, 240, 214, 0.12), transparent 30%);
+    filter: blur(40px);
+    transform: rotate(-20deg);
+    pointer-events: none;
+}
+
+body.futuristic header::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(180deg, transparent 0px, transparent 6px, rgba(255, 255, 255, 0.01) 7px);
+    pointer-events: none;
+    mix-blend-mode: overlay;
+}
+
+/* Project cards: glass surface, gradient border and neon glow on hover */
+body.futuristic main article {
+    position: relative;
+    border: 1px solid transparent;
+    border-image: linear-gradient(90deg, rgba(90, 240, 214, 0.25), rgba(0, 191, 166, 0.12)) 1;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.00));
+    backdrop-filter: blur(4px) saturate(120%);
+}
+
+body.futuristic main article:hover {
+    box-shadow: 0 20px 50px var(--neon-strong);
+    transform: translateY(-12px) scale(1.02);
+}
+
+/* tags: transparent pill with neon outline */
+body.futuristic .tag {
+    background: transparent;
+    color: var(--neon);
+    border: 1px solid rgba(90, 240, 214, 0.12);
+}
+
 .nav-left a {
     margin-right: 12px;
 }
@@ -68,12 +209,12 @@ nav.topnav {
 .nav-left a,
 .nav-left a:link,
 .nav-left a:visited {
-    color: #000;
+    color: var(--site-text);
 }
 
 .nav-left a:hover,
 .nav-left a:focus {
-    color: #000;
+    color: var(--site-text);
     text-decoration: underline;
 }
 
@@ -96,28 +237,49 @@ nav.topnav {
 }
 
 .nav-right .social:hover {
-    background-color: rgba(0, 0, 0, 0.06);
+    background-color: rgba(255, 255, 255, 0.03);
     transform: translateY(-2px);
 }
 
 header {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
-    padding: 40px;
+    padding: 60px 40px;
     gap: 30px;
-    background-color: #fff7ae;
+    background-color: var(--site-surface);
+    min-height: 100vh;
 }
 
 header img {
-    width: 700px;
+    width: auto;
+    max-width: 46%;
     height: auto;
-    max-height: 640px;
+    max-height: 80vh;
     border-radius: 0;
     object-fit: contain;
-    margin-left: 40px;
+    margin-left: 0;
     align-self: center;
-    margin-top: 0;
+}
+
+/* Header entrance: reveal subtitle and name with stagger */
+header .subtitle,
+header h1 {
+    opacity: 0;
+    transform: translateY(8px);
+}
+
+header .subtitle.is-visible,
+header h1.is-visible {
+    animation: fadeUp var(--motion-duration-m) var(--motion-ease) forwards;
+}
+
+.header-left {
+    flex: 1 1 52%;
+}
+
+.aboutMe-inline {
+    width: 100%;
 }
 
 
@@ -156,12 +318,22 @@ header h1 {
     line-height: 1;
 }
 
+/* If JS reveal was removed, keep header visible by default */
+body.futuristic header .subtitle,
+body.futuristic header h1,
+header .subtitle,
+header h1 {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+}
+
 /* About Me header inside the aboutMe-inline container */
 .aboutMe-inline h3,
 header>div>h3 {
     font-size: 1.25rem;
     margin-bottom: 12px;
-    color: #000;
+    color: var(--site-text);
     font-weight: 600;
 }
 
@@ -169,7 +341,7 @@ header>div>p {
     font-size: 1.1rem;
     margin-bottom: 12px;
     line-height: 1.7;
-    color: #fff;
+    color: var(--muted-text);
 }
 
 .aboutMe-inline {
@@ -189,6 +361,7 @@ header>div>p {
     margin-left: calc(50% - 50vw);
     padding: 0 20px;
     box-sizing: border-box;
+    color: var(--site-text);
 }
 
 .projects h3::before,
@@ -199,7 +372,7 @@ header>div>p {
 .Historie h3::after {
     content: "";
     height: 2px;
-    background: #000;
+    background: var(--card-border);
     flex: 1;
     min-width: 20px;
 }
@@ -236,7 +409,7 @@ header>div>p {
 }
 
 .Historie article h4 {
-    margin: 0 0 6px;
+    margin: 0 0 12px;
     font-size: 1.25rem;
     font-weight: 700;
 }
@@ -245,9 +418,6 @@ header>div>p {
     display: flex;
     gap: 18px;
     align-items: flex-start;
-    padding: 24px;
-    border-radius: 6px;
-    background: transparent;
 }
 
 .historie-row img {
@@ -258,6 +428,54 @@ header>div>p {
     flex: 0 0 320px;
 }
 
+/* hover: lift historie item, add shadow and zoom image (like project cards) */
+.historie-item {
+    transition: transform var(--motion-duration-s) var(--motion-ease), box-shadow var(--motion-duration-s) ease;
+    will-change: transform;
+    overflow: visible;
+    /* allow lift without clipping */
+    padding: 10px;
+    z-index: 0;
+}
+
+.historie-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.12);
+    z-index: 10;
+    /* bring above other content while hovering */
+}
+
+.historie-row img {
+    transition: transform 420ms ease;
+}
+
+.historie-item:hover .historie-row img {
+    transform: scale(1.03);
+}
+
+@media (max-width:720px) {
+    .historie-item:hover {
+        transform: translateY(-4px) scale(1.00);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .historie-item:hover .historie-row img {
+        transform: scale(1.02);
+    }
+}
+
+/* ensure space at the bottom so hover lift doesn't overflow viewport */
+.Historie {
+    padding-bottom: 200px;
+    padding-top: 24px;
+}
+
+/* also add bottom padding to projects section to prevent overflow */
+.projects {
+    padding-bottom: 200px;
+    padding-top: 18px;
+}
+
 .historie-text {
     flex: 1 1 auto;
 }
@@ -265,20 +483,6 @@ header>div>p {
 .historie-text p {
     margin: 0;
     line-height: 1.6;
-}
-
-/* hover: slightly enlarge historie items */
-.historie-item {
-    transition: transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms ease;
-    will-change: transform;
-    padding: 20px;
-    box-sizing: border-box;
-    transform-origin: center;
-}
-
-.historie-item:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.10);
 }
 
 
@@ -317,16 +521,9 @@ header>div>p {
     text-align: center;
     gap: 12px;
     padding: 16px;
-    border: 1px solid #000;
+    border: 1px solid var(--card-border);
     border-radius: 8px;
-    background: #ffffff;
-}
-
-.projects>article>article p,
-.projects article article p {
-    font-size: 1rem;
-    color: #333;
-    margin: 0;
+    background: var(--card-bg);
 }
 
 .projects>article>article img,
@@ -338,6 +535,12 @@ header>div>p {
     object-fit: cover;
     border-radius: 6px;
     display: block;
+    transition: transform var(--motion-duration-m) var(--motion-ease);
+}
+
+.projects>article>article:hover img,
+.projects article article:hover img {
+    transform: scale(1.08) translateY(-4px);
 }
 
 
@@ -351,31 +554,33 @@ header>div>p {
     padding: 12px 28px;
     font-size: 1.25rem;
     background: transparent;
-    color: #000;
-    border: 2px solid #fff7ae;
+    color: var(--site-text);
+    border: 2px solid var(--accent);
     cursor: pointer;
     max-width: 260px;
     text-align: center;
-    transition: transform 0.15s ease, text-decoration 0.15s ease;
+    transition: transform 0.15s ease, text-decoration 0.15s ease, background-color 180ms ease, color 180ms ease;
     text-decoration: none;
 }
 
 .projects article>button:hover,
 .projects article>.projects-link:hover {
-    text-decoration: underline;
+    text-decoration: none;
     transform: translateY(-2px);
+    background-color: var(--accent);
+    color: #fff;
 }
 
 /* ensure transitions and hover apply to nested and direct card articles */
 .projects>article>article,
 .projects article article {
-    transition: transform 220ms cubic-bezier(.2, .9, .2, 1), box-shadow 220ms ease;
+    transition: transform var(--motion-duration-s) var(--motion-ease), box-shadow var(--motion-duration-s) ease;
 }
 
 .projects>article>article:hover,
 .projects article article:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transform: translateY(-10px) scale(1.01);
+    box-shadow: 0 22px 46px rgba(0, 0, 0, 0.14);
 }
 
 /* Projects cards: prepare for scroll-triggered fade-in */
@@ -385,7 +590,7 @@ header>div>p {
 }
 
 .projects article article.is-visible {
-    animation: fadeUp 700ms cubic-bezier(.2, .9, .2, 1) forwards;
+    animation: fadeUp var(--motion-duration-l) var(--motion-ease) forwards;
 }
 
 /* staggered delays for project cards */
@@ -419,8 +624,8 @@ header>div>p {
 
 .projects article>button:hover {
     transform: translateY(-4px) scale(1.02);
-    background-color: #fff7ae;
-    color: #000;
+    background-color: var(--accent);
+    color: #fff;
 }
 
 .projects {
@@ -457,6 +662,16 @@ header>div>p {
 
 .skills-grid .skill-card {
     width: 320px;
+}
+
+/* Remove borders/shadows/background for skill articles/cards */
+.skills .skill-card,
+.skills-grid .skill-card,
+.languages-grid .skill-card,
+.skills article {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
 }
 
 /* languages section layout: show language cards side-by-side */
@@ -498,13 +713,19 @@ header>div>p {
     animation: fadeUp 700ms cubic-bezier(.2, .9, .2, 1) forwards;
 }
 
+/* Make skills visible when reveal JS is removed */
+.skill-card {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
 .skill-card img {
     width: 100%;
     height: 220px;
     object-fit: contain;
     display: block;
     border-radius: 6px;
-    background: #fff;
+    background: var(--site-bg);
 }
 
 .skill-card p {
@@ -519,7 +740,22 @@ header>div>p {
     height: 220px;
     display: block;
     border-radius: 6px;
-    background: #fff;
+    background: var(--site-bg);
+}
+
+/* Skill card hover microinteraction */
+.skill-card {
+    transition: transform var(--motion-duration-s) var(--motion-ease), box-shadow var(--motion-duration-s) ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+}
+
+.skill-card:hover img,
+.skill-card:hover svg {
+    transform: scale(1.03) translateY(-3px);
 }
 
 /* staggered delays for nicer entrance */
@@ -571,7 +807,144 @@ header>div>p {
     }
 }
 
-/* ensure space at the bottom so hover lift doesn't overflow viewport */
-.Historie {
-    padding-bottom: 96px;
+/* Additional animation keyframes for a modern / futuristic feel */
+@keyframes floatUp {
+    from {
+        transform: translateY(6px);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+@keyframes neonPulse {
+    0% {
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    }
+
+    50% {
+        box-shadow: 0 8px 30px var(--glow-color);
+    }
+
+    100% {
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    }
+}
+
+/* Utility animation classes */
+.reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+    animation: fadeUp var(--motion-duration-l) var(--motion-ease) forwards;
+}
+
+.float {
+    animation: floatUp var(--motion-duration-l) var(--motion-ease-soft) infinite;
+}
+
+.pulse {
+    animation: neonPulse 1600ms ease-in-out infinite;
+}
+
+.glow {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+    transition: box-shadow 300ms ease, transform 220ms ease;
+}
+
+/* subtle hover accent outline for buttons/links */
+.accent-outline:hover {
+    box-shadow: 0 6px 30px var(--glow-color);
+    transform: translateY(-3px);
+}
+
+/* Shimmer helper for highlights */
+.shimmer {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.06) 50%, rgba(255, 255, 255, 0.02) 100%);
+    background-size: 400% 100%;
+    animation: shimmer 2.4s linear infinite;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --motion-duration-s: 1ms;
+        --motion-duration-m: 1ms;
+        --motion-duration-l: 1ms;
+    }
+
+    .reveal.is-visible,
+    .skill-card.is-visible,
+    .projects article article.is-visible {
+        animation-duration: 1ms !important;
+        transition: none !important;
+    }
+}
+
+/* Ensure homepage projects inner articles are visible by default
+   (cover cases where the section has id, class, or nested wrappers) */
+#projects article article,
+#projects>article>div>article,
+.projects article article,
+.projects>article>div>article {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+}
+
+/* Strong override: remove any underline under nav text (pseudo-element or native) */
+nav>button::after,
+nav>a::after,
+.nav-left a::after,
+nav .nav-left a,
+nav .nav-left a:link,
+nav .nav-left a:visited,
+nav .nav-left a:hover,
+nav .nav-left a:focus,
+nav>button,
+nav>a {
+    text-decoration: none !important;
+    display: inline-block;
+}
+
+/* Explicitly enable the nav underline pseudo-element and ensure it follows `.active` */
+.nav-left a {
+    position: relative !important;
+    display: inline-block !important;
+}
+
+.nav-left a::after {
+    content: "" !important;
+    position: absolute !important;
+    left: 0 !important;
+    bottom: -6px !important;
+    height: 2px !important;
+    width: 0 !important;
+    background: linear-gradient(90deg, var(--neon), rgba(0, 191, 166, 0.35)) !important;
+    transition: width var(--motion-duration-m) var(--motion-ease) !important;
+    display: block !important;
+}
+
+.nav-left a.active::after,
+.nav-left a:focus::after,
+.nav-left a:hover::after {
+    width: 100% !important;
 }

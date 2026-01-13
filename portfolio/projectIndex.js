@@ -27,17 +27,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterButtons = Array.from(document.querySelectorAll('.filters [data-filter]'));
     const articles = Array.from(document.querySelectorAll('main > article'));
 
+    // Animations disabled on projectIndex: mark project items visible immediately
+    const projectItems = Array.from(document.querySelectorAll('main > article'));
+    projectItems.forEach(a => a.classList.add('is-visible'));
+    const headerEl = document.querySelector('header h1');
+    const navBtn = document.querySelector('nav>button');
+    headerEl && headerEl.classList.add('is-visible');
+    navBtn && navBtn.classList.add('is-visible');
+
     function applyFilter(filter) {
-        articles.forEach(a => {
+        articles.forEach((a, i) => {
             if (filter === 'all') {
                 a.style.display = '';
+                a.classList.add('is-visible');
                 return;
             }
             const matches = (
                 (filter === 'personal' && a.classList.contains('personalproject')) ||
                 (filter === 'school' && a.classList.contains('schoolproject'))
             );
-            a.style.display = matches ? '' : 'none';
+            if (matches) {
+                a.style.display = '';
+                a.classList.add('is-visible');
+            } else {
+                // fade out then hide
+                a.classList.remove('is-visible');
+                a.style.transition = 'opacity 260ms ease, transform 260ms ease';
+                a.style.opacity = '0';
+                a.style.transform = 'translateY(12px)';
+                setTimeout(() => { a.style.display = 'none'; a.style.opacity = ''; a.style.transform = ''; a.style.transition = ''; }, 280);
+            }
         });
         filterButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.filter === filter));
     }
