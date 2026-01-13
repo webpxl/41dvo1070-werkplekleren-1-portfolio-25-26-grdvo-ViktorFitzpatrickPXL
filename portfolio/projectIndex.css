@@ -127,6 +127,14 @@ main article img {
     border-radius: 6px
 }
 
+/* Make project description paragraphs scrollable so cards keep the same size */
+main article p:not(.tags) {
+    max-height: 140px;
+    overflow: auto;
+    width: 100%;
+    margin: 8px 0;
+}
+
 .tags {
     display: flex;
     flex-wrap: wrap;
