@@ -12,10 +12,33 @@
 </head>
 
 <body>
-    <nav class="topnav"><button>About</button> <button>Projects</button>
-        <button>Skills</button><button>historie</button>
+    <nav class="topnav">
+        <div class="nav-left">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#historie">Historie</a>
+        </div>
+        <div class="nav-right">
+            <a class="social" href="https://www.instagram.com/wanderingtrader12/" target="_blank"
+                rel="noreferrer noopener" aria-label="Instagram">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="3" width="18" height="18" rx="5" />
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                    <line x1="17.5" y1="6.5" x2="17.5" y2="6.5" />
+                </svg>
+            </a>
+            <a class="social" href="https://www.facebook.com/viktor.fitzpatrick.1/" target="_blank"
+                rel="noreferrer noopener" aria-label="Facebook">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M18 2h-3a4 4 0 0 0-4 4v3H8v4h3v8h4v-8h3l1-4h-4V6a1 1 0 0 1 1-1h3z" />
+                </svg>
+            </a>
+        </div>
     </nav>
-    <header>
+    <header id="about">
         <div class="header-left">
             <h2 class="subtitle">Student Digitale Vormgeving</h2>
             <h1>Viktor Fitzpatrick</h1>
@@ -41,7 +64,7 @@
         <img src="./images/Foto 23-07-2025, 22 33 15.jpg" alt="Foto van Viktor Fitzpatrick">
     </header>
     <main>
-        <section class="projects">
+        <section id="projects" class="projects">
             <article>
                 <h3>Projects</h3>
                 <div>
@@ -85,13 +108,179 @@
             </article>
         </section>
 
-        <section class="skills">
+        <section id="skills" class="skills">
             <h3>Skills</h3>
+            <section>
+                <h4>Digitaal</h4>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const cards = document.querySelectorAll('.skill-card, .projects article article');
+                        const observer = new IntersectionObserver((entries, obs) => {
+                            entries.forEach(entry => {
+                                if (entry.isIntersecting) {
+                                    entry.target.classList.add('is-visible');
+                                    obs.unobserve(entry.target);
+                                }
+                            });
+                        }, { threshold: 0.15 });
+                        cards.forEach(c => observer.observe(c));
+                    });
+                </script>
+                <div class="skills-grid">
+                    <article class="skill-card">
+                        <img src="./images/Adobe_Illustrator_CC_icon.svg" alt="Illustrator">
+                        <p>Adobe Illustrator</p>
+                    </article>
+                    <article class="skill-card">
+                        <img src="./images/Adobe_Photoshop_CC_icon.svg" alt="Photoshop">
+                        <p>Adobe Photoshop</p>
+                    </article>
+                    <article class="skill-card">
+                        <img src="./images/Figma-logo.svg" alt="Figma">
+                        <p>Figma</p>
+                    </article>
+                    <article class="skill-card">
+                        <img src="./images/JavaScript_shield_logo_(no_text).svg" alt="JavaScript">
+                        <p>JavaScript</p>
+                    </article>
+                    <article class="skill-card">
+                        <img src="./images/Devicon-css3-plain-wordmark.svg" alt="CSS">
+                        <p>CSS</p>
+                    </article>
+                    <article class="skill-card">
+                        <img src="./images/Html-1.svg" alt="HTML5">
+                        <p>HTML5</p>
+                    </article>
+                </div>
+            </section>
+            <section class="languages">
+                <h4>Talen</h4>
+                <div class="languages-grid">
+                    <article class="skill-card">
+                        <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            preserveAspectRatio="xMidYMid meet">
+                            <g clip-path="url(#clip0_103_1666)">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0H170.7V512H0V0Z" fill="black" />
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M170.7 0H341.3V512H170.7V0Z"
+                                    fill="#FFD90C" />
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M341.3 0H512V512H341.3V0Z"
+                                    fill="#F31830" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_103_1666">
+                                    <rect width="512" height="512" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
 
+                        <p>Nederlands - Moedertaal</p>
+                    </article>
+                    <article class="skill-card">
+                        <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            preserveAspectRatio="xMidYMid meet">
+                            <g clip-path="url(#clip0_103_10035)">
+                                <path d="M0 0H512V512H0V0Z" fill="#012169" />
+                                <path
+                                    d="M512 0V64L322 256L512 443V512H445L254 324L68 512H0V444L186 257L0 74V0H62L254 188L440 0H512Z"
+                                    fill="white" />
+                                <path
+                                    d="M184 324L195 358L42 512H0V509L184 324ZM308 312L362 320L512 467V512L308 312ZM512 0L320 196L316 152L466 0H512ZM0 1L193 190L134 182L0 49V1Z"
+                                    fill="#C8102E" />
+                                <path d="M176 0V512H336V0H176ZM0 176V336H512V176H0Z" fill="white" />
+                                <path d="M0 208V304H512V208H0ZM208 0V512H304V0H208Z" fill="#C8102E" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_103_10035">
+                                    <rect width="512" height="512" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <p>Engels</p>
+                    </article>
+                    <article class="skill-card">
+                        <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            preserveAspectRatio="xMidYMid meet">
+                            <g clip-path="url(#clip0_103_5877)">
+                                <path d="M0 0H512V512H0V0Z" fill="white" />
+                                <path d="M0 0H170.7V512H0V0Z" fill="#002654" />
+                                <path d="M341.3 0H512V512H341.3V0Z" fill="#CE1126" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_103_5877">
+                                    <rect width="512" height="512" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <p>Frans (10%)</p>
+                </div>
+            </section>
         </section>
-        <section class="Historie">
+        <section id="historie" class="Historie">
             <h3>Historie</h3>
+            <article class="historie-item">
+                <h4>2006</h4>
+                <div class="historie-row">
+                    <img src="./images/kindik.jpg" alt="">
+                    <div class="historie-text">
+                        <p>In 2006 werd baby ik geboren ik ben geboren in frankrijk saint aubin les elbeuf. Mijn mama
+                            woonde
+                            daar in een bedrijf genaamd emmaus. Ik heb 3 jaar in frankrijk maar gek genoeg spreek ik
+                            weinig tot geen frans.</p>
+                    </div>
+                </div>
+            </article>
 
+            <article class="historie-item">
+                <h4>2009</h4>
+                <div class="historie-row">
+                    <img src="./images/kleuterklas.jpg" alt="">
+                    <div class="historie-text">
+                        <p>In 2009 ben ik bij mijn oma en opa gaan wonen. Zij woonden in België, in Bekkevoort, en tot
+                            op
+                            heden woon ik hier nog steeds. Toen ik 3 jaar oud was, ben ik naar België gekomen. Daar ben
+                            ik
+                            ook naar het eerste kleuterklasje gegaan, in het Sint-Jozefcollege in Aarschot.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="historie-item">
+                <h4>2018</h4>
+                <div class="historie-row">
+                    <img src="./images/nova_groen-300x200.jpg" alt="">
+                    <div class="historie-text">
+                        <p>In 2018 ben ik naar de school Ter Beuke gegaan in Kessel-Lo. In die periode is er een nieuwe
+                            directeur gekomen en werd er een volledig nieuw leerplan ingevoerd, wat de school echt heel
+                            tof maakte. In het tweede middelbaar moest ik ineens op een hele nieuwe manier les volgen,
+                            met EPICs, iPads, actieve examens, enzovoort.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="historie-item">
+                <h4>2021</h4>
+                <div class="historie-row">
+                    <img src="./images/galabal.jpg" alt="">
+                    <div class="historie-text">
+                        <p>In 2021 ben ik terechtgekomen op de school De Prins in Diest. Oorspronkelijk was ik begonnen
+                            in een kantoorgerichte richting, maar al snel kwam ik erachter dat dit niets voor mij was.
+                            Daarna heb ik de richting Publiciteit gevonden. Hier heb ik ook het grootste deel van mijn
+                            vrienden leren kennen en heb ik een echte liefde voor design en creativiteit ontwikkeld.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="historie-item">
+                <h4>2025</h4>
+                <div class="historie-row">
+                    <img src="./images/logo.png" alt="">
+                    <div class="historie-text">
+                        <p>Sinds 2025 tot op heden ben ik student aan de Hogeschool PXL in Hasselt. Ik volg de richting
+                            Digitale Vormgeving, omdat ik mij verder wil verdiepen in webdevelopment. Het extra
+                            bijleren van design is daarbij altijd een groot pluspunt.</p>
+                    </div>
+                </div>
+            </article>
         </section>
     </main>
     <nav>
