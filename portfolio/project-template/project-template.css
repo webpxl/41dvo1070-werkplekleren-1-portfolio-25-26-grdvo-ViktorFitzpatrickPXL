@@ -1,0 +1,125 @@
+/* Shared project template styles moved from inline <style> blocks */
+:root {}
+
+main {
+    padding: 28px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 8px 0;
+    text-decoration: none;
+    color: inherit;
+}
+
+.project-row {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    margin: 36px 0;
+    flex-wrap: wrap;
+}
+
+.project-row.reverse {
+    flex-direction: row-reverse;
+}
+
+.project-media {
+    flex: 0 0 44%;
+    max-width: 44%;
+}
+
+.project-media img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    display: block;
+}
+
+.project-content {
+    flex: 1 1 50%;
+    min-width: 260px;
+}
+
+/* compact header: prevent global overrides */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 120px !important;
+    min-height: 0 !important;
+    background-color: var(--site-surface);
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin: 0;
+    font-weight: 700;
+    color: var(--site-text);
+    width: 100%;
+    padding: 0;
+    text-align: center;
+}
+
+@media (max-width:860px) {
+
+    .project-row,
+    .project-row.reverse {
+        flex-direction: column;
+    }
+
+    .project-media {
+        max-width: 100%;
+        flex-basis: 100%
+    }
+
+    .project-content {
+        flex-basis: 100%
+    }
+}
+
+/* Disable animations and neon borders for project detail pages */
+.project-row,
+.project-row * {
+    transition: none !important;
+    animation: none !important;
+}
+
+.project-row {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+.project-row img {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Explicitly disable hover effects */
+.project-row:hover,
+.project-row:hover *,
+.project-row *:hover {
+    transform: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+/* Force images to always appear on the same side (prevent row-reverse) */
+.project-row.reverse {
+    flex-direction: row !important;
+}
+
+@media (max-width:860px) {
+
+    /* keep stacked on small screens */
+    .project-row.reverse {
+        flex-direction: column !important;
+    }
+}
