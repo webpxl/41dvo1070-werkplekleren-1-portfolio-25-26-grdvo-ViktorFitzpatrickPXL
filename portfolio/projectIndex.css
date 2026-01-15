@@ -611,3 +611,58 @@ nav>a {
     text-decoration: none !important;
     display: inline-block;
 }
+
+/* Strong mobile fallback for very small screens */
+@media (max-width:420px) {
+    header {
+        height: 120px !important;
+        padding: 12px !important;
+    }
+
+    main {
+        display: block !important;
+        padding: 12px !important;
+        gap: 12px !important;
+    }
+
+    main article,
+    .project-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 12px 0 !important;
+        box-sizing: border-box !important;
+        float: none !important;
+    }
+
+    main article img {
+        width: 100% !important;
+        height: auto !important;
+        max-height: 220px !important;
+    }
+
+    .filters {
+        padding: 0 8px !important;
+    }
+}
+
+/* Extra safety: remove decorative pseudo-elements and force header to auto on very small screens */
+@media (max-width:420px) {
+    body.futuristic header::before,
+    body.futuristic header::after {
+        display: none !important;
+        content: none !important;
+    }
+
+    body.futuristic header,
+    header {
+        min-height: 0 !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    header h1 {
+        font-size: 1.6rem !important;
+        margin: 0 !important;
+        padding: 6px 0 !important;
+    }
+}

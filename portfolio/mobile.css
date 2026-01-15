@@ -72,3 +72,33 @@
         display: block;
     }
 }
+
+/* Ensure main and project lists take full width and center on small screens */
+@media (max-width:600px) {
+
+    main,
+    .projects,
+    .projects>article,
+    .projects>article>div {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        box-sizing: border-box !important;
+    }
+
+    main {
+        display: block !important;
+    }
+
+    .projects>article>div {
+        display: block !important;
+    }
+
+    .projects article,
+    main article {
+        margin: 12px auto !important;
+        float: none !important;
+    }
+}

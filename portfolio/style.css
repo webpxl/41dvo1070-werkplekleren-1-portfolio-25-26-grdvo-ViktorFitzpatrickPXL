@@ -431,6 +431,20 @@ header>div>p {
     flex: 0 0 320px;
 }
 
+@media (max-width:720px) {
+    .historie-row {
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+    }
+
+    .historie-row img {
+        width: 100%;
+        height: auto;
+        flex: 0 0 auto;
+    }
+}
+
 /* hover: lift historie item, add shadow and zoom image (like project cards) */
 .historie-item {
     transition: transform var(--motion-duration-s) var(--motion-ease), box-shadow var(--motion-duration-s) ease;
