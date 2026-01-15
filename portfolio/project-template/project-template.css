@@ -125,7 +125,7 @@ header h1 {
 }
 
 /* Project-template specific header & image fixes */
-main > header,
+main>header,
 header {
     display: flex;
     flex-direction: column;

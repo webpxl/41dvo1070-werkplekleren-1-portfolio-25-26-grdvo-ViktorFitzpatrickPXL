@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+/* Prevent horizontal scrolling caused by full-viewport width tricks */
+html,
+body {
+    overflow-x: hidden;
+}
+
 /* enable smooth scrolling for in-page navigation */
 html {
     scroll-behavior: smooth;
@@ -357,8 +363,7 @@ header>div>p {
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
+    width: 100%;
     padding: 0 20px;
     box-sizing: border-box;
     color: var(--site-text);
@@ -384,8 +389,7 @@ header>div>p {
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
+    width: 100%;
     padding: 0 20px;
     box-sizing: border-box;
 }
@@ -397,8 +401,7 @@ header>div>p {
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
+    width: 100%;
     padding: 0 20px;
     box-sizing: border-box;
 }
