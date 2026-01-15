@@ -123,3 +123,32 @@ header h1 {
         flex-direction: column !important;
     }
 }
+
+/* Project-template specific header & image fixes */
+main > header,
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    gap: 8px;
+    height: auto !important;
+    min-height: 0 !important;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: var(--site-surface);
+}
+
+.project-media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-media img {
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
