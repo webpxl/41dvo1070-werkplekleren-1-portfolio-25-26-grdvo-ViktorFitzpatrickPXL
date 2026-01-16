@@ -9,3 +9,4 @@ CSS/JS eigen code: projectIndex.css, projectIndex.js, sticky-nav.js
 CSS-libraries: Animate.css, AOS (Animate On Scroll)
 JS-libraries: GSAP (GreenSock), ScrollReveal
 Vector/JSON-animaties: Lottie (Bodymovin) / LottieFiles
+AI zoals copilot chat gpt en git copilot
