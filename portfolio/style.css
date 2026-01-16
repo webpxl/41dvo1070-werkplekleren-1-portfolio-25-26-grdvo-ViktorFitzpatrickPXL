@@ -107,7 +107,8 @@ nav.topnav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    padding: 16px 20px;
+    /* vertical padding vergroot voor hogere nav */
     gap: 12px;
 }
 
@@ -266,7 +267,8 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 40px 40px;
+    padding: 80px 40px;
+    /* meer verticale ruimte in header */
     gap: 30px;
     background-color: var(--site-surface);
     min-height: auto;
@@ -326,6 +328,11 @@ header h1 {
     margin-top: 0;
 }
 
+/* Zet de naam op de startpagina in de accentkleur */
+header#about h1 {
+    color: var(--accent);
+}
+
 .header-left {
     display: flex;
     flex-direction: column;
@@ -366,10 +373,23 @@ header>div>h3 {
 }
 
 header>div>p {
-    font-size: 1.1rem;
-    margin-bottom: 12px;
-    line-height: 1.7;
+    font-size: 1.05rem;
+    margin-bottom: 22px;
+    /* meer ruimte tussen paragrafen */
+    line-height: 1.45;
+    /* compactere regelafstand */
     color: var(--muted-text);
+    text-indent: 1.2rem;
+    /* alinea-inspringing */
+}
+
+/* Zorg dat About Me paragrafen hetzelfde behandelen */
+.aboutMe-inline p {
+    font-size: 1.05rem;
+    margin-bottom: 22px;
+    line-height: 1.45;
+    color: var(--muted-text);
+    text-indent: 1.2rem;
 }
 
 .aboutMe-inline {
@@ -399,7 +419,7 @@ header>div>p {
 .Historie h3::after {
     content: "";
     height: 2px;
-    background: var(--card-border);
+    background: var(--accent);
     flex: 1;
     min-width: 20px;
 }
@@ -505,13 +525,13 @@ header>div>p {
 
 /* ensure space at the bottom so hover lift doesn't overflow viewport */
 .Historie {
-    padding-bottom: 200px;
-    padding-top: 24px;
+    padding-left: 48px;
+    /* afgesproken left padding */
+    padding-right: 48px;
+    /* ook 48 aan de rechterkant */
 }
 
-/* also add bottom padding to projects section to prevent overflow */
 .projects {
-    padding-bottom: 200px;
     padding-top: 18px;
 }
 
@@ -556,10 +576,14 @@ header>div>p {
     max-width: 320px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    /* zorg dat de knop onderaan blijft */
     align-items: center;
     text-align: center;
     gap: 12px;
     padding: 16px;
+    min-height: 420px;
+    /* maak kader langer */
     border: 1px solid var(--card-border);
     border-radius: 8px;
     background: var(--card-bg);
@@ -672,10 +696,57 @@ header>div>p {
     flex-direction: column;
     align-items: center;
     flex-wrap: nowrap;
+    padding-bottom: 50px;
+    /* verlaagd zoals gevraagd */
 }
+
+/* Maak de projecten-container hoger en houd de 'Bekijk meer' link onderaan */
+.projects>article {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 720px;
+    /* pas aan indien je het hoger/lagere wilt */
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 20px 50px;
+    /* padding-bottom verplaatst naar artikel */
+}
+
+/* Extra spacing op de section zelf */
+section#projects {
+    padding-bottom: 20px;
+    padding-left: 2%;
+    padding-right: 2%;
+    box-sizing: border-box;
+}
+
+/* Forceer padding-bottom op de section zelf voor extra zekerheid */
+/* padding-bottom removed from section; handled by article */
 
 .projects button {
     display: block;
+}
+
+.projects-link {
+    margin-top: auto;
+    /* zorg dat de knop onderaan blijft als extra zekerheid */
+}
+
+/* fallback/consistency: zorg dat ook de bestaande project-link class ondermarge heeft */
+.projects-link {
+    margin-bottom: 28px;
+}
+
+/* Specifieke regel voor de anchor die de link in HTML is: zet top en bottom margins expliciet */
+a.projects-link {
+    display: block;
+    margin: 28px auto 28px;
+}
+
+/* Zorg dat anchors met class project-link ondermarge krijgen */
+a.project-link {
+    margin-bottom: 28px;
 }
 
 /* Skills icon grid styles */
@@ -693,14 +764,24 @@ header>div>p {
 
 .skills-grid {
     display: flex;
-    gap: 24px;
+    gap: 12px;
     justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
+    align-items: center;
+    flex-wrap: nowrap;
+    /* forceer 1 rij */
+    overflow-x: auto;
+    /* laat horizontaal scrollen indien nodig op kleine schermen */
+    padding: 8px 12px;
 }
 
 .skills-grid .skill-card {
-    width: 320px;
+    width: auto;
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 6px;
 }
 
 /* Remove borders/shadows/background for skill articles/cards */
@@ -759,12 +840,15 @@ header>div>p {
 }
 
 .skill-card img {
-    width: 100%;
-    height: 220px;
+    width: 64px;
+    /* veel kleiner icoon */
+    height: 64px;
     object-fit: contain;
     display: block;
     border-radius: 6px;
-    background: var(--site-bg);
+    background: var(--site-bg) !important;
+    box-shadow: none !important;
+    mix-blend-mode: normal !important;
 }
 
 .skill-card p {
@@ -775,11 +859,14 @@ header>div>p {
 
 /* ensure inline SVGs inside skill-card scale like images */
 .skill-card svg {
-    width: 100%;
-    height: 220px;
+    width: 64px;
+    /* match img grootte */
+    height: 64px;
     display: block;
     border-radius: 6px;
-    background: var(--site-bg);
+    background: var(--site-bg) !important;
+    box-shadow: none !important;
+    mix-blend-mode: normal !important;
 }
 
 /* Skill card hover microinteraction */

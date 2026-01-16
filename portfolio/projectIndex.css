@@ -31,6 +31,11 @@ body {
     background: var(--site-bg);
 }
 
+/* On the project index we want the futuristic body to have no top padding */
+body.futuristic {
+    padding-top: 0 !important;
+}
+
 nav>button {
     background: transparent;
     border: none;
@@ -107,14 +112,24 @@ nav.topnav>button {
     font-weight: 700;
     letter-spacing: .6px;
     color: var(--site-text);
-    padding: 6px 10px;
+    padding: 10px 16px;
+    /* grotere knop padding */
+    font-size: 1.25rem;
+    /* grotere naam */
     border-radius: 6px;
     transition: transform var(--motion-duration-s) var(--motion-ease), box-shadow 260ms ease;
 }
 
 nav.topnav>button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 28px var(--neon-strong);
+    transform: none;
+    /* geen lift */
+    box-shadow: none !important;
+    /* verwijder dropshadow */
+}
+
+/* Toon alleen de onderlijn op hover */
+nav.topnav>button:hover::after {
+    width: 100%;
 }
 
 /* stronger, neon underline */
