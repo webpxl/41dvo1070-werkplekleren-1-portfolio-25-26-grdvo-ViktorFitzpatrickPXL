@@ -102,3 +102,40 @@
         float: none !important;
     }
 }
+
+/* Force sticky nav on mobile as well */
+@media (max-width:600px) {
+    nav.topnav {
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 9999 !important;
+        width: 100% !important;
+    }
+}
+
+/* Remove large bottom padding on mobile for projects/historie sections */
+@media (max-width:600px) {
+
+    .projects,
+    .Historie {
+        padding-bottom: 0px !important;
+        padding-top: 8px !important;
+    }
+
+    /* Also reduce extra spacing for project container */
+    .projects>article {
+        gap: 12px !important;
+    }
+}
+
+/* Tighten the 'Bekijk meer' button spacing on very small screens */
+@media (max-width:600px) {
+
+    .projects article>.projects-link,
+    .projects article>button {
+        margin: 8px auto 0 !important;
+        padding: 8px 18px !important;
+        max-width: 220px !important;
+        font-size: 1rem !important;
+    }
+}

@@ -111,12 +111,27 @@ nav.topnav {
     gap: 12px;
 }
 
-/* keep the top navigation fixed at the top while scrolling */
+/* Keep the top navigation fixed above other content so header decorations can't sit above it */
 nav.topnav {
-    position: sticky;
-    top: 0;
-    z-index: 999;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 10000 !important;
     width: 100%;
+}
+
+/* Make nav fully opaque to hide anything behind it */
+nav.topnav {
+    background-color: rgba(11, 35, 51, 1) !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+}
+
+/* Hide decorative header pseudo-elements so no band appears above the fixed nav */
+body.futuristic header::before,
+body.futuristic header::after {
+    display: none !important;
 }
 
 /* Futuristic topnav: glass + neon glow (applies when body has .futuristic) */
@@ -251,10 +266,17 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 60px 40px;
+    padding: 40px 40px;
     gap: 30px;
     background-color: var(--site-surface);
-    min-height: 100vh;
+    min-height: auto;
+}
+
+/* If a small strip remains above the nav, make the header itself transparent
+   so the nav sits directly on the page background. This hides any leftover
+   decorative band coming from the header. */
+header {
+    background-color: transparent !important;
 }
 
 header img {

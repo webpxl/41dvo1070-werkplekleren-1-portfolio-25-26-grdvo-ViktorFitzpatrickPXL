@@ -95,6 +95,14 @@ nav.topnav {
     box-shadow: 0 6px 30px rgba(0, 0, 0, 0.5);
 }
 
+/* Ensure nav is sticky on project index pages */
+nav.topnav {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 9999 !important;
+    width: 100% !important;
+}
+
 nav.topnav>button {
     font-weight: 700;
     letter-spacing: .6px;
@@ -332,6 +340,25 @@ main article img {
 
 main article:hover img {
     transform: scale(1.08) translateY(-4px);
+}
+
+/* Make the Pokemon project image show lower part of the photo (focus Mewtwo) */
+.personalproject img {
+    /* shift visible crop further down so Mewtwo is visible */
+    object-position: center 80% !important;
+    object-fit: cover !important;
+}
+
+/* Extra selector for any image filename containing 'pokemon' to ensure the card crop is forced */
+img[src*="pokemon"] {
+    object-position: center 20% !important;
+    object-fit: cover !important;
+}
+
+/* Stronger force for Pokemon image on index: show top portion (Mewtwo) */
+main article.personalproject img[src*="pokemon"] {
+    object-fit: cover !important;
+    object-position: center 20% !important;
 }
 
 /* reduce intensity on small screens */
@@ -647,6 +674,7 @@ nav>a {
 
 /* Extra safety: remove decorative pseudo-elements and force header to auto on very small screens */
 @media (max-width:420px) {
+
     body.futuristic header::before,
     body.futuristic header::after {
         display: none !important;

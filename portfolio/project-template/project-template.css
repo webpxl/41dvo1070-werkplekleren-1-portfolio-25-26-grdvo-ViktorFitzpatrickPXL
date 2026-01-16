@@ -1,5 +1,4 @@
 /* Shared project template styles moved from inline <style> blocks */
-:root {}
 
 main {
     padding: 28px 20px;
@@ -151,4 +150,27 @@ header {
     max-width: 100%;
     height: auto;
     display: block;
+}
+
+/* If the project uses the pokemon image, crop it to show the top portion (Mewtwo) */
+.project-media img[src*="pokemon"] {
+    object-fit: cover !important;
+    object-position: center 20% !important;
+}
+
+/* Rotate specific project image (Rivals.jpg) 90 degrees clockwise for layout */
+.project-media img[src*="Rivals.jpg"] {
+    transform: rotate(90deg);
+    transform-origin: center center;
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Ensure nav is sticky on project template pages */
+nav.topnav {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 9999 !important;
+    width: 100% !important;
 }
